@@ -2,8 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
-    rank = 0
+def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 20, 60]):
 
     [user_market,
      user_stage,
@@ -23,7 +22,6 @@ def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
      user_required_legal_accounting,
      user_required_prototype_refinement] = user_data
 
-    name = str(row['Название объекта'])
     min_funding = int(str(row['Объем инвестиций ОТ, $']).replace(" ", "")) if not pd.isna(
         row['Объем инвестиций ОТ, $']) else 0
     max_funding = int(str(row['Объем инвестиций ДО, $']).replace(" ", "")) if not pd.isna(
@@ -49,6 +47,7 @@ def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
     features = [cond_funding, cond_market, cond_stage, cond_closed,
                 importance_consultation,
                 importance_networking,
+                importance_education,
                 importance_orders,
                 importance_marketing,
                 importance_testing,
