@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 import math
 
-services_filename = '/content/drive/MyDrive/Colab Notebooks/Объекты-сервисы и потребности.xlsx'
-services = pd.read_excel(services_filename, sheet_name=None)
+#services_filename = '/content/drive/MyDrive/Colab Notebooks/Объекты-сервисы и потребности.xlsx'
+#services = pd.read_excel(services_filename, sheet_name=None)
 
 app = FastAPI()
 
