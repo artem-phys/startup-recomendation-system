@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
+
+import json
 
 from ranking_vc import ranking_vc
 from ranking_acc import ranking_acc
@@ -8,6 +13,14 @@ services = dataset_initialization.initialize()
 
 
 app = FastAPI()
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/vc/")
@@ -62,7 +75,7 @@ def recommend_vc(
 
     output_json = rec_vc.iloc[:10, :].reset_index().to_json(force_ascii=False, orient='index')
 
-    return output_json
+    return JSONResponse(content=json.loads(output_json))
 
 
 @app.get("/acc/")
@@ -117,4 +130,4 @@ def recommend_acc(
 
     output_json = rec_acc.iloc[:10, :].reset_index().to_json(force_ascii=False, orient='index')
 
-    return output_json
+    return JSONResponse(content=json.loads(output_json))
