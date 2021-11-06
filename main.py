@@ -64,6 +64,7 @@ def recommend_vc(
 
     return output_json
 
+
 @app.get("/acc/")
 def recommend_acc(
         user_market: str,
