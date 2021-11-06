@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
