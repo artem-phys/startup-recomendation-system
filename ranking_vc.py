@@ -46,7 +46,7 @@ def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
 
     has_accelerator = 1
 
-    features = [cond_funding, cond_market, cond_stage, cond_closed, n_deals,
+    features = [cond_funding, cond_market, cond_stage, cond_closed,
                 importance_consultation,
                 importance_networking,
                 importance_orders,
