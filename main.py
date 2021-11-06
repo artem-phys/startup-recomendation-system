@@ -54,11 +54,11 @@ def recommend_vc(
     service_type = 'Список венчурных фондов'
     df = services[service_type]
     rank_col_name = 'Rank'
-    df[rank_col_name] = services[service_type].apply(lambda row :ranking_vc(row, user_data), axis=1)
+    df[rank_col_name] = services[service_type].apply(lambda row: ranking_vc(row, user_data), axis=1)
     df = df[[rank_col_name] + df.columns[:-1].tolist()]
 
     rec_vc = df.sort_values(by=[rank_col_name], ascending=0)
 
-    output = rec_vc.head(1).reset_index().to_json('json_vc_rec', force_ascii=False, orient='index')
+    output = rec_vc.head(1).reset_index().to_json(force_ascii=False, orient='index')
 
     return output #{"Stage": user_stage, "Market": user_market, "user_data": user_data}
