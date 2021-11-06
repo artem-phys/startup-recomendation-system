@@ -1,9 +1,6 @@
 from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from typing import Optional, List
-import pandas as pd
-import numpy as np
-import math
 
 #services_filename = '/content/drive/MyDrive/Colab Notebooks/Объекты-сервисы и потребности.xlsx'
 #services = pd.read_excel(services_filename, sheet_name=None)
