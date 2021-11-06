@@ -59,6 +59,6 @@ def recommend_vc(
 
     rec_vc = df.sort_values(by=[rank_col_name], ascending=0)
 
-    output = rec_vc.head(1).reset_index().to_json(file, force_ascii=False, orient='index')
+    output = rec_vc.head(1).reset_index().to_json('json_vc_rec', force_ascii=False, orient='index')
 
     return output #{"Stage": user_stage, "Market": user_market, "user_data": user_data}
