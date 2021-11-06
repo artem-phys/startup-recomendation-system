@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Depends
-from pydantic import BaseModel
-from typing import Optional, List
+from fastapi import FastAPI
+
 
 import dataset_initialization
 
 
 app = FastAPI()
+
 
 @app.get("/vc/")
 def recommend_vc(
