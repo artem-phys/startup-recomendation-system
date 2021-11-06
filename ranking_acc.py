@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_acc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60]):
+def ranking_acc(row, user_data, w_acc=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60, 30]):
 
     [user_market,
      user_stage,
@@ -42,6 +42,8 @@ def ranking_acc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60])
     importance_legal_accounting = int(
         'юридическим / бухгалтерским' in str(row['Сервисы'])) * user_required_legal_accounting
 
+    is_free = row['Условия участия'] == 'Бесплатно'
+
     features = [cond_funding, cond_market, cond_stage, cond_closed,
                 importance_consultation,
                 importance_networking,
@@ -49,8 +51,9 @@ def ranking_acc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60])
                 importance_orders,
                 importance_marketing,
                 importance_testing,
-                importance_legal_accounting]
+                importance_legal_accounting,
+                is_free]
 
-    rank = np.dot(w, features)
+    rank = np.dot(w_acc, features)
 
     return rank

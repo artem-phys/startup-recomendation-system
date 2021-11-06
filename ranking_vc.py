@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 20, 60]):
+def ranking_vc(row, user_data, w_vc=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 20, 60]):
 
     [user_market,
      user_stage,
@@ -54,6 +54,6 @@ def ranking_vc(row, user_data, w=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 20, 6
                 importance_legal_accounting,
                 has_accelerator]
 
-    rank = np.dot(w, features)
+    rank = np.dot(w_vc, features)
 
     return rank
