@@ -26,3 +26,10 @@ async def create_place_view(place: Place):
 @app.get("/")
 def home():
     return {"message": "Hello world"}
+
+
+@app.get("/")
+def recommend_vc(
+    user_stage: str, user_market: str
+):
+    return {"description": user_stage, "2": user_market}
