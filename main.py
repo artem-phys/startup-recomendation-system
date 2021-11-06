@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-import ranking_vc
+from ranking_vc import ranking_vc
 import dataset_initialization
 
 services = dataset_initialization.initialize()
