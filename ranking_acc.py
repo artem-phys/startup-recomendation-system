@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_acc(row, user_data, w_acc=[80, 80, 10, -1000, 20, 20, 20, 20, 20, 20, 60, 30]):
+def ranking_acc(row, user_data, w_acc=[80, 80, 80, -1000, 10, 10, 10, 10, 10, 10, 10, 40]):
 
     [user_market,
      user_stage,
@@ -31,16 +31,18 @@ def ranking_acc(row, user_data, w_acc=[80, 80, 10, -1000, 20, 20, 20, 20, 20, 20
                 user_requested_money_min > min_funding) and (user_requested_money_min < max_funding)
     cond_market = user_market in str(row['Рынок'])
     cond_stage = user_stage in str(row['Стадия стартапа'])
-    cond_closed = not pd.isna(row['Дата закрытия'])
+    cond_closed = int('закрыта' in str(row['Статус программы']))
 
-    importance_consultation = int('Консульт' in str(row['Сервисы'])) * user_required_consultation
-    importance_networking = int('нетворкинг' in str(row['Сервисы'])) * user_required_networking
-    importance_education = int('Образова' in str(row['Сервисы'])) * user_required_education
-    importance_orders = int('заказчик' in str(row['Сервисы'])) * user_required_orders
-    importance_marketing = int('маркетинг' in str(row['Сервисы'])) * user_required_marketing
-    importance_testing = int('Тестирование' in str(row['Сервисы'])) * user_required_testing
-    importance_legal_accounting = int(
-        'юридическим / бухгалтерским' in str(row['Сервисы'])) * user_required_legal_accounting
+    target_importance = 3 # additional cost for existence of a requirement in program targets
+
+    importance_consultation = (int('Консульт' in str(row['Сервисы'])) + 3 * int('Консульт' in str(row['Цель программы']))) * user_required_consultation
+    importance_networking = (int('нетворкинг' in str(row['Сервисы'])) + 3 * int('нетворкинг' in str(row['Цель программы']))) * user_required_networking
+    importance_education = (int('Образова' in str(row['Сервисы'])) + 3 * int('Образова' in str(row['Цель программы']))) * user_required_education
+    importance_orders = (int('заказчик' in str(row['Сервисы'])) + 3 * int('заказчик' in str(row['Цель программы']))) * user_required_orders
+    importance_marketing = (int('маркетинг' in str(row['Сервисы'])) + 3 * int('маркетинг' in str(row['Цель программы']))) * user_required_marketing
+    importance_testing = (int('Тестирование' in str(row['Сервисы'])) + 3 * int('Тестирование' in str(row['Цель программы']))) * user_required_testing
+    importance_legal_accounting = (int(
+        'юридическим / бухгалтерским' in str(row['Сервисы'])) + 3 * int('юридическим / бухгалтерским' in str(row['Цель программы']))) * user_required_legal_accounting
 
     is_free = row['Условия участия'] == 'Бесплатно'
 
