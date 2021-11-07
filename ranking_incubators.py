@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_incubators(row, user_data, w_inc=[5, 10, -100, 20, 20, 20, 20, 20, 20, 20]):
+def ranking_incubators(row, user_data, w_inc=[80, 80, -100, 20, 20, 20, 20, 20, 20, 20]):
 
     [user_market,
      user_stage,

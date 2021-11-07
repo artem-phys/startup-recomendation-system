@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_acc(row, user_data, w_acc=[10, 5, 10, -100, 20, 20, 20, 20, 20, 20, 60, 30]):
+def ranking_acc(row, user_data, w_acc=[80, 80, 10, -100, 20, 20, 20, 20, 20, 20, 60, 30]):
 
     [user_market,
      user_stage,

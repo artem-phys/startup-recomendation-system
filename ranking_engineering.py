@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_engineering(row, user_data, w_eng=[5, 10, -100, 20, 20, 20, 20, 20, 20, 20, 20, 20]):
+def ranking_engineering(row, user_data, w_eng=[80, -100, 20, 20, 20, 20, 20, 20, 20, 20, 20]):
 
     [user_market,
      user_stage,
@@ -23,7 +23,6 @@ def ranking_engineering(row, user_data, w_eng=[5, 10, -100, 20, 20, 20, 20, 20, 
      user_required_prototype_refinement] = user_data
 
     cond_market = user_market in str(row['Рынок'])
-    cond_stage = user_stage in str(row['Стадия стартапа'])
     cond_closed = not pd.isna(row['Дата закрытия'])
 
     importance_consultation = int('Консульт' in str(row['Сервисы.1'])) * user_required_consultation
@@ -38,7 +37,7 @@ def ranking_engineering(row, user_data, w_eng=[5, 10, -100, 20, 20, 20, 20, 20, 
     importance_prototype_refinement = int('Прототип' in str(row['Сервисы.1'])) * user_required_prototype_refinement
 
 
-    features = [cond_market, cond_stage, cond_closed,
+    features = [cond_market, cond_closed,
                 importance_consultation,
                 importance_networking,
                 importance_education,

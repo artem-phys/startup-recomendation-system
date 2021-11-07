@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_institutes(row, user_data, w_ins=[5, 10, -100, 20, 20, 20, 20, 20, 20, 20]):
+def ranking_institutes(row, user_data, w_ins=[80, -100, 20, 20, 20, 20, 20, 20, 20]):
 
     [user_market,
      user_stage,
@@ -22,7 +22,6 @@ def ranking_institutes(row, user_data, w_ins=[5, 10, -100, 20, 20, 20, 20, 20, 2
      user_required_legal_accounting,
      user_required_prototype_refinement] = user_data
 
-    cond_market = user_market in str(row['Рынок'])
     cond_stage = user_stage in str(row['Стадия стартапа'])
     cond_closed = not pd.isna(row['Дата закрытия'])
 
@@ -35,7 +34,7 @@ def ranking_institutes(row, user_data, w_ins=[5, 10, -100, 20, 20, 20, 20, 20, 2
     importance_legal_accounting = int(
         'юридическим / бухгалтерским' in str(row['Сервисы'])) * user_required_legal_accounting
 
-    features = [cond_market, cond_stage, cond_closed,
+    features = [cond_stage, cond_closed,
                 importance_consultation,
                 importance_networking,
                 importance_education,
