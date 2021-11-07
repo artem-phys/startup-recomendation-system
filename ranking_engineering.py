@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def ranking_engineering(row, user_data, w_eng=[80, -100, 20, 20, 20, 20, 20, 20, 20, 20, 20]):
+def ranking_engineering(row, user_data, w_eng=[80, -1000, 20, 20, 20, 20, 20, 20, 20, 20, 20]):
 
     [user_market,
      user_stage,
